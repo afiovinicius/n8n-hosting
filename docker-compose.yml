@@ -5,9 +5,9 @@ services:
     image: postgres:latest
     restart: always
     environment:
-      POSTGRES_USER: n8n_db_ut2k_user
-      POSTGRES_PASSWORD: 3sapXElJd2b7rhQ76073WEkEEPeHyWz9
-      POSTGRES_DB: n8n_db_ut2k
+      POSTGRES_USER: ${DB_POSTGRESDB_USER}
+      POSTGRES_PASSWORD: ${DB_POSTGRESDB_PASSWORD}
+      POSTGRES_DB: ${DB_POSTGRESDB_DATABASE}
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
