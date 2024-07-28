@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: n8n_db_ut2k_user
+      POSTGRES_PASSWORD: 3sapXElJd2b7rhQ76073WEkEEPeHyWz9
+      POSTGRES_DB: n8n_db_ut2k
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  n8n:
+    image: docker.n8n.io/n8nio/n8n
+    restart: always
+    ports:
+      - 5678:5678
+    environment:
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_HOST=dpg-cqit9fmehbks73c2itd0-a
+      - DB_POSTGRESDB_PORT=5432
+      - DB_POSTGRESDB_DATABASE=n8n_db_ut2k
+      - DB_POSTGRESDB_USER=n8n_db_ut2k_user
+      - DB_POSTGRESDB_PASSWORD=3sapXElJd2b7rhQ76073WEkEEPeHyWz9
+    volumes:
+      - n8n_data:/n8n/.n8n
+    depends_on:
+      - postgres
+
+volumes:
+  n8n_data:
+  postgres_data:
