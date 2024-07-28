@@ -10,7 +10,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   n8n:
-    image: docker.n8n.io/n8nio/n8n
+    build: .
     restart: always
     ports:
       - 5678:5678
